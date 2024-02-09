@@ -1,9 +1,11 @@
 import express from "express";
-import { registerAnimal, testAnimal } from './animal.controller.js';
+import { deleteAnimal, registerAnimal, testAnimal, updateAnimal } from './animal.controller.js';
 
 const api = express.Router();
 
 api.get('/testAnimal', testAnimal)
-api.get('/registerAnimal', registerAnimal)
+api.post('/registerAnimal', registerAnimal)
+api.put('/updateAnimal/:id', updateAnimal)
+api.delete('/deleteAnimal/:id', deleteAnimal)
 
 export default api

@@ -71,27 +71,27 @@ export const update = async (req, res) => {
         if (!updatedUser) return res.status(401).send({ message: `user not found an not updated` })
         //respuesta al usuario
         return res.send({ message: 'User updated', updatedUser })
-    } catch(err) {
+    } catch (err) {
         console.error(err)
         if (err.keyValue.username) return res.status(400).send({ message: `username ${err.keyValue.username} is already taken` })
         return res.status(500).send({ message: 'Error updating' })
     }
 }
 
-export const deleteU = async(req, res)=>{
-    try{
+export const deleteU = async (req, res) => {
+    try {
         //Obtener el id
         let { id } = req.params
         //validar si esta logrado y es el mismo x no lo vemos hoy x
         //Eliminar (deleteOne / findOneAndDelete)
-        let deletedUser = await User.findOneAndDelete({_id: id})
+        let deletedUser = await User.findOneAndDelete({ _id: id })
         //Verficar que se elimino
-        if(!deletedUser) return res.status(404).send({message: 'Acount not found and not deleted'})
+        if (!deletedUser) return res.status(404).send({ message: 'Acount not found and not deleted' })
         //responder
-    return res.send({message:`Account whit username ${deletedUser.username} deleted successfully`})
+        return res.send({ message: `Account whit username ${deletedUser.username} deleted successfully` })
 
-    }catch(err){
+    } catch (err) {
         console.error(err)
-        return res.status(500).send({message: `error deleting acount`})
+        return res.status(500).send({ message: `error deleting acount` })
     }
 }
