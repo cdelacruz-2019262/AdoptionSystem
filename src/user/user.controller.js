@@ -35,7 +35,7 @@ export const login = async (req, res) => {
         //Validar si el user existe
         let user = await User.findOne({ username })
         //Verifico que la contraseña coincida
-        if (user && await checkPassword(pa8ssword, user.password)) {
+        if (user && await checkPassword(password, user.password)) {
             let loggedUser = {
                 username: user.username,
                 name: user.name,

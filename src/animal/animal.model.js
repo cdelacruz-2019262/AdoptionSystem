@@ -7,7 +7,7 @@ const animalSchema = mongoose.Schema({
     },
     name: {
         type: String,
-        required: false
+        required: true
     },
     breed: {
         type: String,
@@ -18,6 +18,16 @@ const animalSchema = mongoose.Schema({
         required: false
     },
     keeper: {
-        type
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        required:false
+    },
+    role: {
+        type: String,
+        uppercase: true,
+        enum: ['ADOPTED', 'AVAILABLE'],
+        required: true
     }
 })
+
+export default mongoose.model('animal', animalSchema)
